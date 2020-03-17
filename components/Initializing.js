@@ -11,15 +11,16 @@ import { LinearGradient } from 'expo-linear-gradient'
 export default class Initializing extends Component {
     render() {
         return(
-            <View>
+            <View style={styles.container} >
                 <LinearGradient
-                    style={styles.container}
+                    style={[styles.container, styles.activityIndicator]}
                     colors={['steelblue','white', 'maroon']}
+
                 >
                     <Text>Gymook</Text>
                     <ActivityIndicator 
                         size='large' 
-                        color='#00ff00'
+                        color='#000'
                         animating
                     />
                 </LinearGradient>
@@ -31,9 +32,13 @@ export default class Initializing extends Component {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
       alignItems: 'center',
       justifyContent: 'center',
+      backgroundColor: '#fff',
+    },
+    activityIndicator: {
+        width: '100%',
+        height: '100%',
     },
   });
   
