@@ -17,7 +17,9 @@ export default class Initializing extends Component {
                     colors={['steelblue','white', 'maroon']}
 
                 >
-                    <Text>Gymook</Text>
+                    <Text
+                        style={styles.headerText}
+                    >Gymook</Text>
                     <ActivityIndicator 
                         size='large' 
                         color='#000'
@@ -40,5 +42,12 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
     },
+    headerText: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: 'maroon',
+        margin: 50,
+        fontFamily: 'Helvetica'
+    }
   });
   
