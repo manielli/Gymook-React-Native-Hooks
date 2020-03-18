@@ -9,7 +9,17 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name='Loading...' component={Initializing} />
+        <Stack.Screen 
+          name=' ' 
+          component={Initializing} 
+          color='steelblue'
+          options={{
+            headerStyle: {
+              backgroundColor: 'steelblue',
+            }
+          }} 
+        
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
