@@ -1,25 +1,24 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-import Initializing from './components/Initializing'
+import { Spinner } from './components'
 
 const Stack = createStackNavigator()
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen 
-          name=' ' 
-          component={Initializing} 
-          color='steelblue'
-          options={{
-            headerStyle: {
-              backgroundColor: 'steelblue',
-            }
-          }} 
-        
-        />
+      <Stack.Navigator 
+        initialRouteName=' ' 
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: 'steelblue'
+          }
+        }}
+      >
+        <Stack.Screen name=' ' >
+          {props => <Spinner size='large' />}
+        </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );
