@@ -12,13 +12,11 @@ export default function App() {
         initialRouteName=' ' 
         screenOptions={{
           headerStyle: {
-            backgroundColor: 'steelblue'
+            backgroundColor: 'steelblue',
           }
         }}
       >
-        <Stack.Screen name=' ' >
-          {props => <Spinner size='large' />}
-        </Stack.Screen>
+        <Stack.Screen name=' ' component={Spinner} />
       </Stack.Navigator>
     </NavigationContainer>
   );
