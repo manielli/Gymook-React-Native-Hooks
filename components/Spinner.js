@@ -20,7 +20,7 @@ const Spinner = (props) => {
                 >Gymook</Text>
                 <ActivityIndicator 
                     size={props.size || 'large'} 
-                    color='#000'
+                    color={props.color || 'maroon'}
                     animating
                 />
             </LinearGradient>
