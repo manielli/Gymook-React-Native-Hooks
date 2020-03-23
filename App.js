@@ -1,24 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { NavigationContainer } from '@react-navigation/native'
-import { createStackNavigator } from '@react-navigation/stack'
-import { Spinner } from './components'
+import { Provider } from 'react-redux'
+import configureStore from './store'
+import AppRouter from './AppRouter'
 
-const Stack = createStackNavigator()
+const { store } = configureStore()
 
 export default function App() {
-  
   return (
-    <NavigationContainer>
-      <Stack.Navigator 
-        initialRouteName=' ' 
-        screenOptions={{
-          headerStyle: {
-            backgroundColor: 'steelblue',
-          }
-        }}
-      >
-        <Stack.Screen name=' ' component={Spinner} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Provider store={store} >
+      <AppRouter />
+    </Provider>
   );
 }
