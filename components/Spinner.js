@@ -1,4 +1,4 @@
-import React,{ Component } from 'react'
+import React from 'react'
 import {
     View,
     Text,
@@ -20,7 +20,7 @@ const Spinner = (props) => {
                 >Gymook</Text>
                 <ActivityIndicator 
                     size={props.size || 'large'} 
-                    color='#000'
+                    color={props.color || 'maroon'}
                     animating
                 />
             </LinearGradient>
