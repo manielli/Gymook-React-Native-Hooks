@@ -6,9 +6,8 @@ import {
 } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 
-
 const Spinner = (props) => {
-    return(
+    return (
         <View style={styles.container} >
             <LinearGradient
                 style={[styles.container, styles.activityIndicator]}
