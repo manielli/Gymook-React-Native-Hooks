@@ -13,6 +13,10 @@ const SignIn = (props) => {
     const [loading, setLoading] = useState(false)
     const authenticatedUser = useSelector(state => state.auth)
 
+    useEffect(() => {
+        console.log('component did mount and updated!')
+    })
+
     return (
         <View style={styles.container} >
             <LinearGradient
