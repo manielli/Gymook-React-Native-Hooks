@@ -1,4 +1,4 @@
-const BASE_URL = `http://192.168.0.45:3000/api/v1`;
+const BASE_URL = `http://localhost:3000/api/v1`;
 
 export const GymClass = {
     all() {

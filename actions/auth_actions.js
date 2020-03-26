@@ -8,36 +8,35 @@ import {
 import { AsyncStorage } from 'react-native'
 import { Session, User } from '../requests'
 
-export const userEmailLoginSuccess = (userEmail, userPassword) => {
+export const userEmailLogin = (userEmail, userPassword) => {
     return async function(dispatch) {
         try {
             Session.create({
                 email: userEmail, 
                 password: userPassword
             }).then(data => {
-                console.log(data)
+                let dataObj = JSON.stringify(data)
+                console.log(dataObj["id"])
                 dispatch({
                     type: USER_EMAIL_LOGIN_SUCCESS,
-                    payload: sessionUserData 
+                    payload: dataObj.id
                 })
             }).catch((error) => {
                 console.log(error)
+                dispatch({
+                    type: USER_EMAIL_LOGIN_FAIL
+                })
             })
         } catch (error) {
             console.log(error)
+            dispatch({
+                type: USER_EMAIL_LOGIN_FAIL
+            })
         }
     }
 }
 
-export const userEmailLoginFail = () => {
-
-}
-
-export const userEmailLogoutSuccess = () => {
-
-}
-
-export const userEmailLogoutFail = () => {
+export const userEmailLogout = () => {
 
 }
 

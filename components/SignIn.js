@@ -7,7 +7,7 @@ import {
 import { Button, Card, CardSection, Input } from './common'
 import { LinearGradient } from 'expo-linear-gradient'
 import { useSelector, useDispatch } from 'react-redux'
-import { actions as authActions } from '../actions/auth_actions'
+import * as actions from '../actions'
 
 const SignIn = (props) => {
     const [email, setEmail] = useState(null)
@@ -23,17 +23,22 @@ const SignIn = (props) => {
 
     const onButtonPress = () => {
         setLoading(true)
-        dispatch(authActions.loginUserEmailSuccess({ email, password }))
+        dispatch(actions.userEmailLogin(email, password))
     }
 
     const renderButton = () => {
         if (loading) {
-            return <ActivityIndicator style={{color: 'maroon'}} size='small' />
+            return (
+                <ActivityIndicator 
+                    color='maroon' 
+                    size='large'
+                />
+            )
         }
 
         return (
             <Button onPress={onButtonPress} >
-                Log In
+                Sign In
             </Button>
         )
     }
