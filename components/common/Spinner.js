@@ -14,9 +14,9 @@ const Spinner = (props) => {
                 colors={['steelblue','white', 'maroon']}
 
             >
-                <Text
-                    style={styles.headerText}
-                >Gymook</Text>
+                <Text style={styles.headerText}>
+                    Gymook
+                </Text>
                 <ActivityIndicator 
                     size={props.size || 'large'} 
                     color={props.color || 'maroon'}
@@ -54,3 +54,4 @@ const styles = {
   };
   
   export { Spinner }
+  
