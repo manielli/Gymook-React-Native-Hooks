@@ -3,6 +3,7 @@ import {
     compose,
     applyMiddleware
 } from 'redux'
+import thunk from 'redux-thunk'
 import reducers from '../reducers'
 
 export default () => {
@@ -10,7 +11,7 @@ export default () => {
         reducers,
         {},
         compose(
-            applyMiddleware()
+            applyMiddleware(thunk)
         )
     )
     return { store }

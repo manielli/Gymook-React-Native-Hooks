@@ -9,13 +9,13 @@ import {
 export default function (state={}, action) {
     switch(action.type) {
         case USER_EMAIL_LOGIN_SUCCESS:
-            return { token: action.payload };
+            return { currentUser: action.payload };
         case USER_EMAIL_LOGIN_FAIL:
-            return { token: null };
+            return { currentUser: null };
         case USER_EMAIL_LOGOUT_SUCCESS:
-            return { token: null };
+            return { currentUser: null };
         case USER_EMAIL_LOGOUT_FAIL:
-            return { token: action.payload };
+            return { currentUser: action.payload };
         case OBTAIN_CURRENT_USER:
             return { currentUser: action.payload };
         default:
