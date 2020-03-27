@@ -14,11 +14,11 @@ const SignIn = (props) => {
     const [password, setPassword] = useState(null)
     const [errors, setErrors] = useState({email: null, password: null})
     const [loading, setLoading] = useState(false)
-    const authenticatedUser = useSelector(state => state.auth)
+    const authenticatedUser = useSelector(state => state.auth.currentUser)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        console.log('component did mount and updated!')
+
     })
 
     const onButtonPress = () => {
@@ -26,19 +26,47 @@ const SignIn = (props) => {
         dispatch(actions.userEmailLogin(email, password))
     }
 
+    
     const renderButton = () => {
         if (loading) {
             return (
                 <ActivityIndicator 
-                    color='maroon' 
-                    size='large'
+                color='maroon' 
+                size='large'
                 />
-            )
-        }
-
-        return (
-            <Button onPress={onButtonPress} >
+                )
+            }
+            
+            return (
+                <Button onPress={onButtonPress} >
                 Sign In
+            </Button>
+        )
+    }
+    
+    const onLogoutButtonPress = () => {
+        dispatch(actions.userEmailLogout())
+        setLoading(false)
+    }
+
+    const renderLogoutButton = () => {
+        return (
+            <Button onPress={onLogoutButtonPress} >
+                Sign Out
+            </Button>
+        )
+    }
+
+    const onObtainCurrentUserButtonPress = () => {
+        dispatch(actions.obtainCurrentUser)
+        setLoading(false)
+        console.log('onObtainCurrentUserButtonPress:', authenticatedUser.id)
+    }
+
+    const renderObtainCurrentUserButton = () => {
+        return (
+            <Button onPress={onObtainCurrentUserButtonPress} >
+                Obtain Current User
             </Button>
         )
     }
@@ -69,6 +97,12 @@ const SignIn = (props) => {
                     </CardSection>
                     <CardSection>
                         {renderButton()}
+                    </CardSection>
+                    <CardSection>
+                        {renderLogoutButton()}
+                    </CardSection>
+                    <CardSection>
+                        {renderObtainCurrentUserButton()}
                     </CardSection>
                 </Card>
             </LinearGradient>

@@ -11,9 +11,9 @@ export default function (state={}, action) {
         case USER_EMAIL_LOGIN_SUCCESS:
             return { currentUser: action.payload };
         case USER_EMAIL_LOGIN_FAIL:
-            return { currentUser: null };
+            return { currentUser: action.payload };
         case USER_EMAIL_LOGOUT_SUCCESS:
-            return { currentUser: null };
+            return { currentUser: action.payload };
         case USER_EMAIL_LOGOUT_FAIL:
             return { currentUser: action.payload };
         case OBTAIN_CURRENT_USER:

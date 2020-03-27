@@ -15,11 +15,9 @@ export const userEmailLogin = (userEmail, userPassword) => {
                 email: userEmail, 
                 password: userPassword
             }).then(data => {
-                let dataObj = JSON.stringify(data)
-                console.log(dataObj["id"])
                 dispatch({
                     type: USER_EMAIL_LOGIN_SUCCESS,
-                    payload: dataObj.id
+                    payload: data
                 })
             }).catch((error) => {
                 console.log(error)
@@ -37,6 +35,31 @@ export const userEmailLogin = (userEmail, userPassword) => {
 }
 
 export const userEmailLogout = () => {
+    return async function(dispatch) {
+        try {
+            Session.destroy()
+                .then(data => {
+                    dispatch({
+                        type: USER_EMAIL_LOGOUT_SUCCESS,
+                        payload: data
+                    })
+                }).catch((error) => {
+                    console.log(error)
+                    dispatch({
+                        type: USER_EMAIL_LOGOUT_FAIL,
+                        payload: error
+                    })
+                })
+
+
+        } catch (error) {
+            console.log(error)
+            dispatch({
+                type: USER_EMAIL_LOGOUT_FAIL,
+                payload: error
+            })
+        }
+    }
 
 }
 
