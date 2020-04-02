@@ -20,15 +20,15 @@ export const userEmailLogin = (userEmail, userPassword) => {
                     payload: data
                 })
             }).catch((error) => {
-                console.log(error)
                 dispatch({
-                    type: USER_EMAIL_LOGIN_FAIL
+                    type: USER_EMAIL_LOGIN_FAIL,
+                    payload: error
                 })
             })
         } catch (error) {
-            console.log(error)
             dispatch({
-                type: USER_EMAIL_LOGIN_FAIL
+                type: USER_EMAIL_LOGIN_FAIL,
+                payload: error
             })
         }
     }
@@ -44,7 +44,6 @@ export const userEmailLogout = () => {
                         payload: data
                     })
                 }).catch((error) => {
-                    console.log(error)
                     dispatch({
                         type: USER_EMAIL_LOGOUT_FAIL,
                         payload: error
@@ -53,7 +52,6 @@ export const userEmailLogout = () => {
 
 
         } catch (error) {
-            console.log(error)
             dispatch({
                 type: USER_EMAIL_LOGOUT_FAIL,
                 payload: error
@@ -67,16 +65,21 @@ export const obtainCurrentUser = () => {
     return async function(dispatch) {
         try {
             User.current().then(data => {
-                console.log(data)
                 dispatch({
-                    type: OBTAIN_CURRENT_USER,
+                    type: OBTAIN_CURRENT_USER_SUCCESS,
                     payload: currentUser
-                }).catch((error) => {
-                    console.log(error)
+                })
+            }).catch((error) => {
+                dispatch({
+                    type: OBTAIN_CURRENT_USER_FAIL,
+                    payload: error
                 })
             })
         } catch (error) {
-            console.log(error)
+            dispatch({
+                type: OBTAIN_CURRENT_USER_FAIL,
+                payload: error
+            })
         }
     }
 }
