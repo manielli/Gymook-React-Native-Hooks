@@ -4,11 +4,11 @@ import { Spinner } from './common'
 import { useSelector } from 'react-redux'
 
 const WelcomePage = ({ navigation }) => {
-    const authenticatedUser = useSelector(state => state.auth)
+    const authenticatedUser = useSelector(state => state.auth.currentUser)
     console.log(authenticatedUser)
     
     const renderSpinner = () => {
-        if (authenticatedUser) {
+        if (!authenticatedUser) {
             navigation.navigate('Sign In/Up')
         } 
         return (
@@ -17,9 +17,7 @@ const WelcomePage = ({ navigation }) => {
     }
     
     return (
-        <View style={{backgroundColor: 'steelblue'}} >
-            {renderSpinner()}
-        </View>
+            renderSpinner()
     )
 }
 

@@ -39,8 +39,8 @@ const SignIn = ({ navigation }) => {
             
             return (
                 <Button onPress={onButtonPress} >
-                Sign In
-            </Button>
+                    Sign In
+                </Button>
         )
     }
     
@@ -57,16 +57,16 @@ const SignIn = ({ navigation }) => {
         )
     }
 
-    const onObtainCurrentUserButtonPress = () => {
+    const onObtainAuthStateStatusButtonPress = () => {
         dispatch(actions.obtainCurrentUser)
         setLoading(false)
-        console.log('onObtainCurrentUserButtonPress:', authenticatedUser.id)
+        console.log('onObtainAuthStateStatusButtonPress:', authenticatedUser)
     }
 
-    const renderObtainCurrentUserButton = () => {
+    const renderObtainAuthStateStatusButton = () => {
         return (
-            <Button onPress={onObtainCurrentUserButtonPress} >
-                Obtain Current User
+            <Button onPress={onObtainAuthStateStatusButtonPress} >
+                Obtain Auth State Status
             </Button>
         )
     }
@@ -102,7 +102,7 @@ const SignIn = ({ navigation }) => {
                         {renderLogoutButton()}
                     </CardSection>
                     <CardSection>
-                        {renderObtainCurrentUserButton()}
+                        {renderObtainAuthStateStatusButton()}
                     </CardSection>
                 </Card>
             </LinearGradient>
