@@ -15,6 +15,7 @@ export const userEmailLogin = (userEmail, userPassword) => {
                 email: userEmail, 
                 password: userPassword
             }).then(data => {
+                // console.log(data)
                 dispatch({
                     type: USER_EMAIL_LOGIN_SUCCESS,
                     payload: data
@@ -39,6 +40,7 @@ export const userEmailLogout = () => {
         try {
             Session.destroy()
                 .then(data => {
+                    // console.log(data)
                     dispatch({
                         type: USER_EMAIL_LOGOUT_SUCCESS,
                         payload: data
@@ -65,9 +67,10 @@ export const obtainCurrentUser = () => {
     return async function(dispatch) {
         try {
             User.current().then(data => {
+                // console.log(data)
                 dispatch({
                     type: OBTAIN_CURRENT_USER_SUCCESS,
-                    payload: currentUser
+                    payload: data
                 })
             }).catch((error) => {
                 dispatch({

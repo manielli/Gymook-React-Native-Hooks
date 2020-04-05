@@ -1,8 +1,8 @@
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-import { SignIn } from './components/SignIn'
-import { WelcomePage } from './components/WelcomePage'
+import { AuthScreen } from './screens/AuthScreen'
+import { WelcomeScreen } from './screens/WelcomeScreen'
 
 const Stack = createStackNavigator()
 
@@ -18,8 +18,8 @@ export default function AppRouter() {
                     },
                 }}
             >
-                <Stack.Screen name=' ' component={WelcomePage} />
-                <Stack.Screen name='Sign In/Up' component={SignIn} />
+                <Stack.Screen name=' ' component={WelcomeScreen} />
+                <Stack.Screen name='Sign In/Up' component={AuthScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     )
