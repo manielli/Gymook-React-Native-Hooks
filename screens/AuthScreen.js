@@ -4,7 +4,7 @@ import {
     Text,
     ActivityIndicator
 } from 'react-native'
-import { Button, Card, CardSection, Input } from './common'
+import { Button, Card, CardSection, Input } from '../components/common'
 import { LinearGradient } from 'expo-linear-gradient'
 import { useSelector, useDispatch } from 'react-redux'
 import * as actions from '../actions'
