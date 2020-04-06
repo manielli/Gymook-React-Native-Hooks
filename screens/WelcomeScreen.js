@@ -1,9 +1,8 @@
 import React from 'react'
-import { View } from 'react-native'
 import { Spinner } from '../components/common'
 import { useSelector } from 'react-redux'
 
-const WelcomePage = ({ navigation }) => {
+const WelcomeScreen = ({ navigation }) => {
     const authenticatedUser = useSelector(state => state.auth.currentUser)
     console.log(authenticatedUser)
     
@@ -21,4 +20,4 @@ const WelcomePage = ({ navigation }) => {
     )
 }
 
-export { WelcomePage }
+export { WelcomeScreen }
