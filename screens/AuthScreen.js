@@ -9,7 +9,7 @@ import { LinearGradient } from 'expo-linear-gradient'
 import { useSelector, useDispatch } from 'react-redux'
 import * as actions from '../actions'
 
-const SignIn = ({ navigation }) => {
+const AuthScreen = ({ navigation }) => {
     const [email, setEmail] = useState(null)
     const [password, setPassword] = useState(null)
     const [errors, setErrors] = useState({email: null, password: null})
@@ -117,4 +117,4 @@ const styles = {
     }
 }
 
-export { SignIn }
+export { AuthScreen }
