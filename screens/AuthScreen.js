@@ -123,12 +123,20 @@ const AuthScreen = ({ navigation }) => {
                 style={styles.appleAuthButton}
                 onPress={async () => {
                     try {
-                        console.log('Sign in with Apple button pressesd!!!')
+                        const credential = await AppleAuthentication.signInAsync({
+                            requestedScopes: [
+                                AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+                                AppleAuthentication.AppleAuthenticationScope.EMAIL
+                            ]
+                        })
+                        //Signed In ...
                     } catch (error) {
                         if (error.code === 'ERR_CANCELED') {
                             console.log(error)
+                            //Sign in flow canceled by the user
                         } else {
                             console.log(error)
+                            //Other errors
                         }
                     }
                 }}
