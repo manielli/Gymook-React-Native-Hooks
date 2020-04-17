@@ -1,17 +1,17 @@
 import React from 'react'
-import { Spinner } from '../components/common'
+import { BookingsScreen } from './BookingsScreen'
 import { useSelector } from 'react-redux'
 
 const WelcomeScreen = ({ navigation }) => {
-    const authenticatedUser = useSelector(state => state.auth.currentUser)
-    console.log(authenticatedUser)
+    const authState = useSelector(state => state.auth)
+    // console.log(authState)
     
     const renderSpinner = () => {
-        if (!authenticatedUser) {
+        if (!authState.currentUser) {
             navigation.navigate('Sign In/Up')
         } 
         return (
-            <Spinner />
+            <BookingsScreen />
         )
     }
     

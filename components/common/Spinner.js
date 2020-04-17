@@ -10,7 +10,7 @@ const Spinner = (props) => {
     return (
         <View style={styles.container} >
             <LinearGradient
-                style={[styles.container, styles.activityIndicator]}
+                style={styles.container}
                 colors={['steelblue','white', 'maroon']}
 
             >
@@ -35,11 +35,9 @@ const styles = {
       justifyContent: 'center',
       backgroundColor: '#fff',
     },
-    activityIndicator: {
+    headerText: {
         width: '100%',
         height: '100%',
-    },
-    headerText: {
         fontSize: 20,
         fontWeight: 'bold',
         color: 'maroon',
