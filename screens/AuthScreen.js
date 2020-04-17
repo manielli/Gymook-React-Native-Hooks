@@ -123,12 +123,21 @@ const AuthScreen = ({ navigation }) => {
                 style={styles.appleAuthButton}
                 onPress={async () => {
                     try {
-                        console.log('Sign in with Apple button pressesd!!!')
+                        const credential = await AppleAuthentication.signInAsync({
+                            requestedScopes: [
+                                AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+                                AppleAuthentication.AppleAuthenticationScope.EMAIL
+                            ]
+                        })
+                        console.log(credential)
+                        //Signed In ...
                     } catch (error) {
                         if (error.code === 'ERR_CANCELED') {
                             console.log(error)
+                            //Sign in flow canceled by the user
                         } else {
                             console.log(error)
+                            //Other errors
                         }
                     }
                 }}
@@ -141,11 +150,10 @@ const styles = {
     container: {
         flex: 1,
         justifyContent: 'center',
-        width: '100%'
     },
     appleAuthButton: {
-        width: '80%',
-        height: 50,
+        width: '95%',
+        height: 40,
         alignSelf: 'center',
         margin: 5,
     }
