@@ -74,7 +74,6 @@ export const obtainCurrentUser = () => {
         dispatch({ type: OBTAIN_CURRENT_USER })
         try {
             User.current().then(data => {
-                // console.log(data)
                 dispatch({
                     type: OBTAIN_CURRENT_USER_SUCCESS,
                     payload: data

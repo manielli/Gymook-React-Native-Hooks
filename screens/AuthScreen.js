@@ -8,6 +8,7 @@ import { Button, Card, CardSection, Input } from '../components/common'
 import { LinearGradient } from 'expo-linear-gradient'
 import { useSelector, useDispatch } from 'react-redux'
 import * as actions from '../actions'
+import * as AppleAuthentication from 'expo-apple-authentication'
 
 const AuthScreen = ({ navigation }) => {
     const [email, setEmail] = useState(null)
@@ -64,7 +65,7 @@ const AuthScreen = ({ navigation }) => {
     }
 
     const onObtainAuthStateStatusButtonPress = () => {
-        dispatch(actions.obtainCurrentUser)
+        dispatch(actions.obtainCurrentUser())
     }
 
     const renderObtainAuthStateStatusButton = () => {
@@ -115,6 +116,23 @@ const AuthScreen = ({ navigation }) => {
                     {renderObtainAuthStateStatusButton()}
                 </CardSection>
             </Card>
+            <AppleAuthentication.AppleAuthenticationButton 
+                buttonType={AppleAuthentication.AppleAuthenticationButtonType.SIGN_IN}
+                buttonStyle={AppleAuthentication.AppleAuthenticationButtonStyle.BLACK}
+                cornerRadius={25}
+                style={styles.appleAuthButton}
+                onPress={async () => {
+                    try {
+                        console.log('Sign in with Apple button pressesd!!!')
+                    } catch (error) {
+                        if (error.code === 'ERR_CANCELED') {
+                            console.log(error)
+                        } else {
+                            console.log(error)
+                        }
+                    }
+                }}
+            />
         </LinearGradient>
     )
 }
@@ -124,6 +142,12 @@ const styles = {
         flex: 1,
         justifyContent: 'center',
         width: '100%'
+    },
+    appleAuthButton: {
+        width: '80%',
+        height: 50,
+        alignSelf: 'center',
+        margin: 5,
     }
 }
 
