@@ -12,17 +12,18 @@ import * as actions from '../actions'
 const AuthScreen = ({ navigation }) => {
     const [email, setEmail] = useState(null)
     const [password, setPassword] = useState(null)
-    const [errors, setErrors] = useState({email: null, password: null})
-    const [loading, setLoading] = useState(false)
+    const error = useSelector(state => state.auth.error)
+    const loading = useSelector(state => state.auth.loading)
     const authenticatedUser = useSelector(state => state.auth.currentUser)
+    const authState = useSelector(state => state.auth)
+    console.log(authState)
     const dispatch = useDispatch()
 
     useEffect(() => {
-
+        
     })
 
     const onButtonPress = () => {
-        setLoading(true)
         dispatch(actions.userEmailLogin(email, password))
     }
 
@@ -30,10 +31,9 @@ const AuthScreen = ({ navigation }) => {
     const renderButton = () => {
         if (loading) {
             return (
-                <ActivityIndicator 
-                color='maroon' 
-                size='large'
-                />
+                <Button disabled >
+                    Sign In
+                </Button>
                 )
             }
             
@@ -46,10 +46,16 @@ const AuthScreen = ({ navigation }) => {
     
     const onLogoutButtonPress = () => {
         dispatch(actions.userEmailLogout())
-        setLoading(false)
     }
 
     const renderLogoutButton = () => {
+        if (loading) {
+            return (
+                <Button disabled >
+                    Sign Out
+                </Button>
+            )
+        }
         return (
             <Button onPress={onLogoutButtonPress} >
                 Sign Out
@@ -59,11 +65,16 @@ const AuthScreen = ({ navigation }) => {
 
     const onObtainAuthStateStatusButtonPress = () => {
         dispatch(actions.obtainCurrentUser)
-        setLoading(false)
-        console.log('onObtainAuthStateStatusButtonPress:', authenticatedUser)
     }
 
     const renderObtainAuthStateStatusButton = () => {
+        if (loading) {
+            return (
+                <Button disabled >
+                    Obtain Auth State Status
+                </Button>
+            )
+        }
         return (
             <Button onPress={onObtainAuthStateStatusButtonPress} >
                 Obtain Auth State Status
@@ -72,47 +83,46 @@ const AuthScreen = ({ navigation }) => {
     }
 
     return (
-        <View style={styles.container} >
-            <LinearGradient
-                style={styles.container}
-                colors={['steelblue', 'white', 'maroon']}
-            >
-                <Card>
-                    <CardSection>
-                        <Input 
-                            value={email}
-                            label='Email'
-                            onChangeText={email => setEmail(email)}
-                            placeholder='user@emailaddress.com'
-                        />
-                    </CardSection>
-                    <CardSection>
-                        <Input 
-                            value={password}
-                            label='Password'
-                            onChangeText={password => setPassword(password)}
-                            placeholder='password'
-                            secureTextEntry={true}
-                        />
-                    </CardSection>
-                    <CardSection>
-                        {renderButton()}
-                    </CardSection>
-                    <CardSection>
-                        {renderLogoutButton()}
-                    </CardSection>
-                    <CardSection>
-                        {renderObtainAuthStateStatusButton()}
-                    </CardSection>
-                </Card>
-            </LinearGradient>
-        </View>
+        <LinearGradient
+            style={styles.container}
+            colors={['steelblue', 'white', 'maroon']}
+        >
+            <Card>
+                <CardSection>
+                    <Input 
+                        value={email}
+                        label='Email'
+                        onChangeText={email => setEmail(email)}
+                        placeholder='user@emailaddress.com'
+                    />
+                </CardSection>
+                <CardSection>
+                    <Input 
+                        value={password}
+                        label='Password'
+                        onChangeText={password => setPassword(password)}
+                        placeholder='password'
+                        secureTextEntry={true}
+                    />
+                </CardSection>
+                <CardSection>
+                    {renderButton()}
+                </CardSection>
+                <CardSection>
+                    {renderLogoutButton()}
+                </CardSection>
+                <CardSection>
+                    {renderObtainAuthStateStatusButton()}
+                </CardSection>
+            </Card>
+        </LinearGradient>
     )
 }
 
 const styles = {
     container: {
         flex: 1,
+        justifyContent: 'center',
         width: '100%'
     }
 }
