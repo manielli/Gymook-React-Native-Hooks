@@ -129,6 +129,7 @@ const AuthScreen = ({ navigation }) => {
                                 AppleAuthentication.AppleAuthenticationScope.EMAIL
                             ]
                         })
+                        console.log(credential)
                         //Signed In ...
                     } catch (error) {
                         if (error.code === 'ERR_CANCELED') {
@@ -149,11 +150,10 @@ const styles = {
     container: {
         flex: 1,
         justifyContent: 'center',
-        width: '100%'
     },
     appleAuthButton: {
-        width: '80%',
-        height: 50,
+        width: '95%',
+        height: 40,
         alignSelf: 'center',
         margin: 5,
     }
