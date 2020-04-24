@@ -153,7 +153,7 @@ const styles = {
     },
     appleAuthButton: {
         width: '95%',
-        height: 40,
+        height: 50,
         alignSelf: 'center',
         margin: 5,
     }
