@@ -40,7 +40,7 @@ const AuthScreen = ({ navigation }) => {
             
             return (
                 <Button onPress={onLoginButtonPress} >
-                    Sign In
+                    Email Sign In
                 </Button>
         )
     }

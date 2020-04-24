@@ -20,11 +20,10 @@ export const userEmailLogin = (userEmail, userPassword) => {
                 email: userEmail, 
                 password: userPassword
             }).then(data => {
-                // console.log(data.status)
-                if (data.status === '200') {
+                if (data.status == "200") {
                     dispatch({
                         type: USER_EMAIL_LOGIN_COMPLETE,
-                        payload: data
+                        payload: data.user
                     })
                 } else {
                     dispatch({
@@ -53,19 +52,24 @@ export const userEmailLogout = () => {
         try {
             Session.destroy()
                 .then(data => {
-                    // console.log(data)
-                    dispatch({
-                        type: USER_EMAIL_LOGOUT_COMPLETE,
-                        payload: data
-                    })
+                    console.log(data)
+                    if (data.status == "200") {                        
+                        dispatch({
+                            type: USER_EMAIL_LOGOUT_COMPLETE,
+                            payload: data
+                        })
+                    } else {
+                        dispatch({
+                            type: USER_EMAIL_LOGOUT_FAIL,
+                            payload: data
+                        })
+                    }
                 }).catch((error) => {
                     dispatch({
                         type: USER_EMAIL_LOGOUT_FAIL,
                         payload: error
                     })
                 })
-
-
         } catch (error) {
             dispatch({
                 type: USER_EMAIL_LOGOUT_FAIL,
@@ -81,11 +85,10 @@ export const obtainCurrentUser = () => {
         dispatch({ type: OBTAIN_CURRENT_USER })
         try {
             User.current().then(data => {
-                // console.log(data)
-                if (data.status === '200') {
+                if (data.status == "200") {
                     dispatch({
                         type: OBTAIN_CURRENT_USER_COMPLETE,
-                        payload: data
+                        payload: data.user
                     })
                 } else {
                     dispatch({
