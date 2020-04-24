@@ -135,5 +135,27 @@ export const User = {
                 credentials: "include"
             }
         ).then(res => res.json());
-    }
+    },
+    all() {
+        return fetch(`${BASE_URL}/users`, {
+                method: "GET",
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(params)
+            }
+        )
+    },
+    create() {
+        return fetch(`${BASE_URL}/user`, {
+                method: "POST",
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(params)
+            }
+        ).then(res => res.json())
+    },
 }
