@@ -24,12 +24,12 @@ const AuthScreen = ({ navigation }) => {
         
     })
 
-    const onButtonPress = () => {
+    const onLoginButtonPress = () => {
         dispatch(actions.userEmailLogin(email, password))
     }
 
     
-    const renderButton = () => {
+    const renderLoginButton = () => {
         if (loading) {
             return (
                 <Button disabled >
@@ -39,7 +39,7 @@ const AuthScreen = ({ navigation }) => {
             }
             
             return (
-                <Button onPress={onButtonPress} >
+                <Button onPress={onLoginButtonPress} >
                     Sign In
                 </Button>
         )
@@ -107,7 +107,7 @@ const AuthScreen = ({ navigation }) => {
                     />
                 </CardSection>
                 <CardSection>
-                    {renderButton()}
+                    {renderLoginButton()}
                 </CardSection>
                 <CardSection>
                     {renderLogoutButton()}

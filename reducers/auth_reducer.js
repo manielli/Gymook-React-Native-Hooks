@@ -68,6 +68,7 @@ export default function (state = INITIAL_STATE, action) {
         case OBTAIN_CURRENT_USER:
             return { 
                 ...state, 
+                currentUser: null,
                 loading: true, 
                 status: 'obtaining_current_user',
                 error: ''
