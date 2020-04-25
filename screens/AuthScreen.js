@@ -109,12 +109,12 @@ const AuthScreen = ({ navigation }) => {
                 <CardSection>
                     {renderLoginButton()}
                 </CardSection>
-                <CardSection>
+                {/* <CardSection>
                     {renderLogoutButton()}
                 </CardSection>
                 <CardSection>
                     {renderObtainAuthStateStatusButton()}
-                </CardSection>
+                </CardSection> */}
             </Card>
             <AppleAuthentication.AppleAuthenticationButton 
                 buttonType={AppleAuthentication.AppleAuthenticationButtonType.SIGN_IN}
