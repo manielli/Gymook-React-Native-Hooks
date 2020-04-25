@@ -52,11 +52,9 @@ export const userEmailLogout = () => {
         try {
             Session.destroy()
                 .then(data => {
-                    console.log(data)
                     if (data.status == "200") {                        
                         dispatch({
-                            type: USER_EMAIL_LOGOUT_COMPLETE,
-                            payload: data
+                            type: USER_EMAIL_LOGOUT_COMPLETE
                         })
                     } else {
                         dispatch({
