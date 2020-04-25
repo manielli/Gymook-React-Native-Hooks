@@ -1,13 +1,13 @@
 import { 
     USER_EMAIL_LOGIN,
     USER_EMAIL_LOGIN_FAIL,
-    USER_EMAIL_LOGIN_SUCCESS,
+    USER_EMAIL_LOGIN_COMPLETE,
     USER_EMAIL_LOGOUT, 
-    USER_EMAIL_LOGOUT_SUCCESS,
+    USER_EMAIL_LOGOUT_COMPLETE,
     USER_EMAIL_LOGOUT_FAIL, 
     OBTAIN_CURRENT_USER,
     OBTAIN_CURRENT_USER_FAIL,
-    OBTAIN_CURRENT_USER_SUCCESS
+    OBTAIN_CURRENT_USER_COMPLETE
 } from '../actions/types'
 
 const INITIAL_STATE = {
@@ -35,12 +35,12 @@ export default function (state = INITIAL_STATE, action) {
                 status: 'logging_in_user_failed', 
                 error: action.payload 
             }
-        case USER_EMAIL_LOGIN_SUCCESS:
+        case USER_EMAIL_LOGIN_COMPLETE:
             return { 
                 ...state, 
                 currentUser: action.payload, 
                 loading: false, 
-                status: 'logging_in_user_succeeded',
+                status: 'logging_in_user_completed',
                 error: ''
             }
         case USER_EMAIL_LOGOUT:
@@ -57,12 +57,12 @@ export default function (state = INITIAL_STATE, action) {
                 status: 'logging_out_user_failed',
                 error: action.payload 
             }
-        case USER_EMAIL_LOGOUT_SUCCESS:
+        case USER_EMAIL_LOGOUT_COMPLETE:
             return { 
                 ...state, 
                 currentUser: null,
                 loading: false, 
-                status: 'logging_out_succeeded',
+                status: 'logging_out_completed',
                 error: ''
             }
         case OBTAIN_CURRENT_USER:
@@ -80,12 +80,12 @@ export default function (state = INITIAL_STATE, action) {
                 status: 'obtaining_current_user_failed',
                 error: action.payload,
             }
-        case OBTAIN_CURRENT_USER_SUCCESS:
+        case OBTAIN_CURRENT_USER_COMPLETE:
             return { 
                 ...state, 
                 currentUser: action.payload, 
                 loading: false, 
-                status: 'obtaining_current_user_succeeded',
+                status: 'obtaining_current_user_completed',
                 error: ''
             }
         default:

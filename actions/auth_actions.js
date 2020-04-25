@@ -1,12 +1,12 @@
 import {
     USER_EMAIL_LOGIN,
     USER_EMAIL_LOGIN_FAIL,
-    USER_EMAIL_LOGIN_SUCCESS,
+    USER_EMAIL_LOGIN_COMPLETE,
     USER_EMAIL_LOGOUT,
     USER_EMAIL_LOGOUT_FAIL,
-    USER_EMAIL_LOGOUT_SUCCESS,
+    USER_EMAIL_LOGOUT_COMPLETE,
     OBTAIN_CURRENT_USER,
-    OBTAIN_CURRENT_USER_SUCCESS,
+    OBTAIN_CURRENT_USER_COMPLETE,
     OBTAIN_CURRENT_USER_FAIL
 } from './types'
 import { AsyncStorage } from 'react-native'
@@ -20,11 +20,17 @@ export const userEmailLogin = (userEmail, userPassword) => {
                 email: userEmail, 
                 password: userPassword
             }).then(data => {
-                // console.log(data)
-                dispatch({
-                    type: USER_EMAIL_LOGIN_SUCCESS,
-                    payload: data
-                })
+                if (data.status == "200") {
+                    dispatch({
+                        type: USER_EMAIL_LOGIN_COMPLETE,
+                        payload: data.user
+                    })
+                } else {
+                    dispatch({
+                        type: USER_EMAIL_LOGIN_FAIL,
+                        payload: data
+                    })
+                }
             }).catch((error) => {
                 dispatch({
                     type: USER_EMAIL_LOGIN_FAIL,
@@ -46,19 +52,24 @@ export const userEmailLogout = () => {
         try {
             Session.destroy()
                 .then(data => {
-                    // console.log(data)
-                    dispatch({
-                        type: USER_EMAIL_LOGOUT_SUCCESS,
-                        payload: data
-                    })
+                    console.log(data)
+                    if (data.status == "200") {                        
+                        dispatch({
+                            type: USER_EMAIL_LOGOUT_COMPLETE,
+                            payload: data
+                        })
+                    } else {
+                        dispatch({
+                            type: USER_EMAIL_LOGOUT_FAIL,
+                            payload: data
+                        })
+                    }
                 }).catch((error) => {
                     dispatch({
                         type: USER_EMAIL_LOGOUT_FAIL,
                         payload: error
                     })
                 })
-
-
         } catch (error) {
             dispatch({
                 type: USER_EMAIL_LOGOUT_FAIL,
@@ -74,10 +85,17 @@ export const obtainCurrentUser = () => {
         dispatch({ type: OBTAIN_CURRENT_USER })
         try {
             User.current().then(data => {
-                dispatch({
-                    type: OBTAIN_CURRENT_USER_SUCCESS,
-                    payload: data
-                })
+                if (data.status == "200") {
+                    dispatch({
+                        type: OBTAIN_CURRENT_USER_COMPLETE,
+                        payload: data.user
+                    })
+                } else {
+                    dispatch({
+                        type: OBTAIN_CURRENT_USER_FAIL,
+                        payload: data
+                    })
+                }
             }).catch((error) => {
                 dispatch({
                     type: OBTAIN_CURRENT_USER_FAIL,

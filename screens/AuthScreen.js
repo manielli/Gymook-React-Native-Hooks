@@ -40,7 +40,7 @@ const AuthScreen = ({ navigation }) => {
             
             return (
                 <Button onPress={onLoginButtonPress} >
-                    Sign In
+                    Email Sign In
                 </Button>
         )
     }
@@ -153,7 +153,7 @@ const styles = {
     },
     appleAuthButton: {
         width: '95%',
-        height: 40,
+        height: 50,
         alignSelf: 'center',
         margin: 5,
     }
