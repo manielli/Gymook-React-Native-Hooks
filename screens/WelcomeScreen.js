@@ -8,7 +8,7 @@ const WelcomeScreen = ({ navigation }) => {
     
     const renderSpinner = () => {
         if (!authState.currentUser) {
-            navigation.navigate('Sign In/Up')
+            navigation.navigate('  ')
         } 
         return (
             <BookingsScreen />
