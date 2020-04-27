@@ -34,7 +34,7 @@ const AuthScreen = ({ navigation }) => {
             console.log(credential)
             //Signed In ...
             if (credential.user) {
-                navigation.navigate('Bookings Screen')
+                await navigation.navigate('Bookings Screen')
             } else {
                 console.log(credential.error)
             }
@@ -51,9 +51,9 @@ const AuthScreen = ({ navigation }) => {
 
     const onLoginButtonPress = async () => {
         try {
-            await dispatch(actions.userEmailLogin(email, password))
+            dispatch(actions.userEmailLogin(email, password))
             if (authState.currentUser) {
-                navigation.navigate('Bookings Screen')
+                await navigation.navigate('Bookings Screen')
             }
         } catch (error) {
             console.log(error)
