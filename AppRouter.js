@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { AuthScreen } from './screens/AuthScreen'
 import { WelcomeScreen } from './screens/WelcomeScreen'
+import { BookingsScreen } from './screens/BookingsScreen'
 
 const Stack = createStackNavigator()
 
@@ -19,7 +20,8 @@ export default function AppRouter() {
                 }}
             >
                 <Stack.Screen name=' ' component={WelcomeScreen} />
-                <Stack.Screen name='Sign In/Up' component={AuthScreen} />
+                <Stack.Screen name='  ' component={AuthScreen} />
+                <Stack.Screen name='Bookings Screen' component={BookingsScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     )

@@ -15,7 +15,6 @@ const AuthScreen = ({ navigation }) => {
     const [password, setPassword] = useState(null)
     const error = useSelector(state => state.auth.error)
     const loading = useSelector(state => state.auth.loading)
-    const authenticatedUser = useSelector(state => state.auth.currentUser)
     const authState = useSelector(state => state.auth)
     console.log(authState)
     const dispatch = useDispatch()
@@ -24,8 +23,41 @@ const AuthScreen = ({ navigation }) => {
         
     })
 
-    const onLoginButtonPress = () => {
-        dispatch(actions.userEmailLogin(email, password))
+    const onSignInWithAppleButton = async () => {
+        try {
+            const credential = await AppleAuthentication.signInAsync({
+                requestedScopes: [
+                    AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+                    AppleAuthentication.AppleAuthenticationScope.EMAIL
+                ]
+            })
+            console.log(credential)
+            //Signed In ...
+            if (credential.user) {
+                navigation.navigate('Bookings Screen')
+            } else {
+                console.log(credential.error)
+            }
+        } catch (error) {
+            if (error.code === 'ERR_CANCELED') {
+                console.log(error)
+                //Sign in flow canceled by the user
+            } else {
+                console.log(error)
+                //Other errors
+            }
+        }
+    }
+
+    const onLoginButtonPress = async () => {
+        try {
+            await dispatch(actions.userEmailLogin(email, password))
+            if (authState.currentUser) {
+                navigation.navigate('Bookings Screen')
+            }
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     
@@ -121,26 +153,7 @@ const AuthScreen = ({ navigation }) => {
                 buttonStyle={AppleAuthentication.AppleAuthenticationButtonStyle.BLACK}
                 cornerRadius={25}
                 style={styles.appleAuthButton}
-                onPress={async () => {
-                    try {
-                        const credential = await AppleAuthentication.signInAsync({
-                            requestedScopes: [
-                                AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
-                                AppleAuthentication.AppleAuthenticationScope.EMAIL
-                            ]
-                        })
-                        console.log(credential)
-                        //Signed In ...
-                    } catch (error) {
-                        if (error.code === 'ERR_CANCELED') {
-                            console.log(error)
-                            //Sign in flow canceled by the user
-                        } else {
-                            console.log(error)
-                            //Other errors
-                        }
-                    }
-                }}
+                onPress={onSignInWithAppleButton}
             />
         </LinearGradient>
     )
