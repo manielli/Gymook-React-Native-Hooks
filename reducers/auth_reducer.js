@@ -14,7 +14,9 @@ const INITIAL_STATE = {
     currentUser: null,
     loading: false,
     status: '',
-    error: ''
+    error: '',
+    token: null,
+    appleSignInToken: null
 }
 
 export default function (state = INITIAL_STATE, action) {
@@ -25,7 +27,9 @@ export default function (state = INITIAL_STATE, action) {
                 currentUser: null,
                 loading: true, 
                 status: 'logging_in_user',
-                error: '' 
+                error: '',
+                token: null,
+                appleSignInToken: null
             }
         case USER_EMAIL_LOGIN_FAIL:
             return { 
@@ -33,7 +37,9 @@ export default function (state = INITIAL_STATE, action) {
                 currentUser: null,
                 loading: false,
                 status: 'logging_in_user_failed', 
-                error: action.payload 
+                error: action.payload,
+                token: null,
+                appleSignInToken: null
             }
         case USER_EMAIL_LOGIN_COMPLETE:
             return { 
@@ -41,21 +47,25 @@ export default function (state = INITIAL_STATE, action) {
                 currentUser: action.payload, 
                 loading: false, 
                 status: 'logging_in_user_completed',
-                error: ''
+                error: '',
+                token: action.payload.password_digest,
+                appleSignInToken: null
             }
         case USER_EMAIL_LOGOUT:
             return { 
                 ...state, 
                 loading: true,
                 status: 'logging_out_user', 
-                error: '' 
+                error: '',
+                token: null,
+                appleSignInToken: null
             }
         case USER_EMAIL_LOGOUT_FAIL:
             return { 
                 ...state, 
                 loading: false , 
                 status: 'logging_out_user_failed',
-                error: action.payload 
+                error: action.payload,
             }
         case USER_EMAIL_LOGOUT_COMPLETE:
             return { 
@@ -63,7 +73,9 @@ export default function (state = INITIAL_STATE, action) {
                 currentUser: null,
                 loading: false, 
                 status: 'logging_out_completed',
-                error: ''
+                error: '',
+                token: null,
+                appleSignInToken: null,
             }
         case OBTAIN_CURRENT_USER:
             return { 
@@ -71,7 +83,9 @@ export default function (state = INITIAL_STATE, action) {
                 currentUser: null,
                 loading: true, 
                 status: 'obtaining_current_user',
-                error: ''
+                error: '',
+                token: null,
+                appleSignInToken: null
             }
         case OBTAIN_CURRENT_USER_FAIL:
             return { 
@@ -79,6 +93,8 @@ export default function (state = INITIAL_STATE, action) {
                 loading: false, 
                 status: 'obtaining_current_user_failed',
                 error: action.payload,
+                token: null,
+                appleSignInToken: null
             }
         case OBTAIN_CURRENT_USER_COMPLETE:
             return { 
@@ -86,7 +102,9 @@ export default function (state = INITIAL_STATE, action) {
                 currentUser: action.payload, 
                 loading: false, 
                 status: 'obtaining_current_user_completed',
-                error: ''
+                error: '',
+                token: action.payload.password_digest,
+                appleSignInToken: null
             }
         default:
             return state;
