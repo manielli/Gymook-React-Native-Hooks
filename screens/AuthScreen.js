@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import {
     View,
     Text,
-    ActivityIndicator
+    ActivityIndicator,
+    Animated
 } from 'react-native'
 import { Button, Card, CardSection, Input } from '../components/common'
 import { LinearGradient } from 'expo-linear-gradient'
@@ -18,6 +19,8 @@ const AuthScreen = ({ navigation }) => {
     const authState = useSelector(state => state.auth)
     console.log(authState)
     const dispatch = useDispatch()
+    const position = new Animated.ValueXY(0, 0)
+    Animated.spring(position, {toValue: { x: 0, y: -300}}).start()
 
     useEffect(() => {
         
@@ -121,26 +124,32 @@ const AuthScreen = ({ navigation }) => {
             colors={['steelblue', 'white', 'maroon']}
         >
             <Card>
-                <CardSection>
-                    <Input 
-                        value={email}
-                        label='Email'
-                        onChangeText={email => setEmail(email)}
-                        placeholder='user@emailaddress.com'
-                    />
-                </CardSection>
-                <CardSection>
-                    <Input 
-                        value={password}
-                        label='Password'
-                        onChangeText={password => setPassword(password)}
-                        placeholder='password'
-                        secureTextEntry={true}
-                    />
-                </CardSection>
-                <CardSection>
-                    {renderLoginButton()}
-                </CardSection>
+                <Animated.View style={position.getLayout()} >
+                    <CardSection>
+                        <Input 
+                            value={email}
+                            label='Email'
+                            onChangeText={email => setEmail(email)}
+                            placeholder='user@emailaddress.com'
+                        />
+                    </CardSection>
+                </Animated.View>
+                <Animated.View style={position.getLayout()}>
+                    <CardSection>
+                        <Input 
+                            value={password}
+                            label='Password'
+                            onChangeText={password => setPassword(password)}
+                            placeholder='password'
+                            secureTextEntry={true}
+                        />
+                    </CardSection>
+                </Animated.View>
+                <Animated.View style={position.getLayout()}>    
+                    <CardSection>
+                        {renderLoginButton()}
+                    </CardSection>
+                </Animated.View>
                 {/* <CardSection>
                     {renderLogoutButton()}
                 </CardSection>
@@ -148,13 +157,15 @@ const AuthScreen = ({ navigation }) => {
                     {renderObtainAuthStateStatusButton()}
                 </CardSection> */}
             </Card>
-            <AppleAuthentication.AppleAuthenticationButton 
-                buttonType={AppleAuthentication.AppleAuthenticationButtonType.SIGN_IN}
-                buttonStyle={AppleAuthentication.AppleAuthenticationButtonStyle.BLACK}
-                cornerRadius={25}
-                style={styles.appleAuthButton}
-                onPress={onSignInWithAppleButton}
-            />
+            <Animated.View style={position.getLayout()}>        
+                <AppleAuthentication.AppleAuthenticationButton 
+                    buttonType={AppleAuthentication.AppleAuthenticationButtonType.SIGN_IN}
+                    buttonStyle={AppleAuthentication.AppleAuthenticationButtonStyle.BLACK}
+                    cornerRadius={25}
+                    style={styles.appleAuthButton}
+                    onPress={onSignInWithAppleButton}
+                />
+            </Animated.View>
         </LinearGradient>
     )
 }
@@ -162,7 +173,7 @@ const AuthScreen = ({ navigation }) => {
 const styles = {
     container: {
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'flex-end',
     },
     appleAuthButton: {
         width: '95%',
