@@ -24,7 +24,7 @@ const AuthScreen = ({ navigation }) => {
     console.log(authState)
     const dispatch = useDispatch()
     const position = useRef(new Animated.ValueXY(0, 0)).current
-    Animated.timing(position, {toValue: { x: 0, y: -350}, duration: 1000}).start()
+    Animated.timing(position, {toValue: { x: 0, y: -300}, duration: 1000}).start()
 
     useEffect(() => {
     })
