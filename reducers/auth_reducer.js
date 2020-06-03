@@ -48,7 +48,7 @@ export default function (state = INITIAL_STATE, action) {
                 loading: false, 
                 status: 'logging_in_user_completed',
                 error: '',
-                token: action.payload.password_digest,
+                token: null,
                 appleSignInToken: null
             }
         case USER_EMAIL_LOGOUT:
@@ -103,7 +103,7 @@ export default function (state = INITIAL_STATE, action) {
                 loading: false, 
                 status: 'obtaining_current_user_completed',
                 error: '',
-                token: action.payload.password_digest,
+                token: null,
                 appleSignInToken: null
             }
         default:

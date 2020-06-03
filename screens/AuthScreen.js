@@ -1,4 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { 
+    useState, 
+    useEffect,
+    useRef 
+} from 'react'
 import {
     View,
     Text,
@@ -19,11 +23,10 @@ const AuthScreen = ({ navigation }) => {
     const authState = useSelector(state => state.auth)
     console.log(authState)
     const dispatch = useDispatch()
-    const position = new Animated.ValueXY(0, 0)
-    Animated.spring(position, {toValue: { x: 0, y: -300}}).start()
+    const position = useRef(new Animated.ValueXY(0, 0)).current
+    Animated.spring(position, {toValue: { x: 0, y: -350}, tension: 1}).start()
 
     useEffect(() => {
-        
     })
 
     const onSignInWithAppleButton = async () => {
@@ -34,7 +37,7 @@ const AuthScreen = ({ navigation }) => {
                     AppleAuthentication.AppleAuthenticationScope.EMAIL
                 ]
             })
-            console.log(credential)
+            // console.log(credential)
             //Signed In ...
             if (credential.user) {
                 await navigation.navigate('Bookings Screen')
