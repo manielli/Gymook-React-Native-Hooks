@@ -7,10 +7,14 @@ import {
     USER_EMAIL_LOGOUT_COMPLETE,
     OBTAIN_CURRENT_USER,
     OBTAIN_CURRENT_USER_COMPLETE,
-    OBTAIN_CURRENT_USER_FAIL
+    OBTAIN_CURRENT_USER_FAIL,
+    SIGN_IN_WITH_APPLE_LOGIN,
+    SIGN_IN_WITH_APPLE_LOGIN_FAIL,
+    SIGN_IN_WITH_APPLE_LOGIN_COMPLETE
 } from './types'
 import { AsyncStorage } from 'react-native'
 import { Session, User } from '../requests'
+import * as AppleAuthentication from 'expo-apple-authentication'
 
 export const userEmailLogin = (userEmail, userPassword) => {
     return async function(dispatch) {
@@ -106,5 +110,38 @@ export const obtainCurrentUser = () => {
                 payload: error
             })
         }
+    }
+}
+
+export const signInWithAppleLogin = async dispatch => {
+    dispatch({ type: SIGN_IN_WITH_APPLE_LOGIN })
+    let token = await AsyncStorage.getItem('identityToken')
+    if (token) {
+        dispatch({
+            type: SIGN_IN_WITH_APPLE_LOGIN_COMPLETE,
+            payload: token
+        })
+    } else {
+        doSignInWithAppleLogin(dispatch)
+    }
+}
+
+const doSignInWithAppleLogin = async dispatch => {
+    const credential = await AppleAuthentication.signInAsync({
+        requestedScopes: [
+            AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+            AppleAuthentication.AppleAuthenticationScope.EMAIL
+        ]
+    })
+    console.log(credential)
+    if (credential) {
+        dispatch({
+            type: SIGN_IN_WITH_APPLE_LOGIN_COMPLETE,
+            payload: credential
+        })
+    } else {
+        dispatch({
+            type: SIGN_IN_WITH_APPLE_LOGIN_FAIL
+        })
     }
 }

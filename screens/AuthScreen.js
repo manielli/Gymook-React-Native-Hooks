@@ -31,27 +31,12 @@ const AuthScreen = ({ navigation }) => {
 
     const onSignInWithAppleButton = async () => {
         try {
-            const credential = await AppleAuthentication.signInAsync({
-                requestedScopes: [
-                    AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
-                    AppleAuthentication.AppleAuthenticationScope.EMAIL
-                ]
-            })
-            // console.log(credential)
-            //Signed In ...
-            if (credential.user) {
+            dispatch(actions.signInWithAppleLogin)
+            if (authState.currentUser) {
                 await navigation.navigate('Bookings Screen')
-            } else {
-                console.log(credential.error)
-            }
+            } 
         } catch (error) {
-            if (error.code === 'ERR_CANCELED') {
-                console.log(error)
-                //Sign in flow canceled by the user
-            } else {
-                console.log(error)
-                //Other errors
-            }
+            console.log(authState.error)
         }
     }
 
