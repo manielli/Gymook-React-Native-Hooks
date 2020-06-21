@@ -127,21 +127,26 @@ export const signInWithAppleLogin = async dispatch => {
 }
 
 const doSignInWithAppleLogin = async dispatch => {
-    const credential = await AppleAuthentication.signInAsync({
-        requestedScopes: [
-            AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
-            AppleAuthentication.AppleAuthenticationScope.EMAIL
-        ]
-    })
-    console.log(credential)
-    if (credential) {
-        dispatch({
-            type: SIGN_IN_WITH_APPLE_LOGIN_COMPLETE,
-            payload: credential
+    try {
+        const credential = await AppleAuthentication.signInAsync({
+            requestedScopes: [
+                AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+                AppleAuthentication.AppleAuthenticationScope.EMAIL
+            ]
         })
-    } else {
-        dispatch({
-            type: SIGN_IN_WITH_APPLE_LOGIN_FAIL
-        })
+        // console.log(credential)
+    
+        if (credential) {
+            dispatch({
+                type: SIGN_IN_WITH_APPLE_LOGIN_COMPLETE,
+                payload: credential
+            })
+        } else {
+            dispatch({
+                type: SIGN_IN_WITH_APPLE_LOGIN_FAIL
+            })
+        }
+    } catch (error) {
+        console.log(error)
     }
 }
