@@ -147,6 +147,9 @@ const doSignInWithAppleLogin = async dispatch => {
             })
         }
     } catch (error) {
+        dispatch({
+            type: SIGN_IN_WITH_APPLE_LOGIN_FAIL
+        })
         console.log(error)
     }
 }
