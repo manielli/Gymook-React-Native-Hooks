@@ -19,7 +19,7 @@ const INITIAL_STATE = {
     status: '',
     error: '',
     token: null,
-    appleSignInToken: null
+    appleSignInCredential: null
 }
 
 export default function (state = INITIAL_STATE, action) {
@@ -32,7 +32,7 @@ export default function (state = INITIAL_STATE, action) {
                 status: 'logging_in_user',
                 error: '',
                 token: null,
-                appleSignInToken: null
+                appleSignInCredential: null
             }
         case USER_EMAIL_LOGIN_FAIL:
             return { 
@@ -42,7 +42,7 @@ export default function (state = INITIAL_STATE, action) {
                 status: 'logging_in_user_failed', 
                 error: action.payload,
                 token: null,
-                appleSignInToken: null
+                appleSignInCredential: null
             }
         case USER_EMAIL_LOGIN_COMPLETE:
             return { 
@@ -52,7 +52,7 @@ export default function (state = INITIAL_STATE, action) {
                 status: 'logging_in_user_completed',
                 error: '',
                 token: null,
-                appleSignInToken: null
+                appleSignInCredential: null
             }
         case USER_EMAIL_LOGOUT:
             return { 
@@ -61,7 +61,7 @@ export default function (state = INITIAL_STATE, action) {
                 status: 'logging_out_user', 
                 error: '',
                 token: null,
-                appleSignInToken: null
+                appleSignInCredential: null
             }
         case USER_EMAIL_LOGOUT_FAIL:
             return { 
@@ -78,7 +78,7 @@ export default function (state = INITIAL_STATE, action) {
                 status: 'logging_out_completed',
                 error: '',
                 token: null,
-                appleSignInToken: null,
+                appleSignInCredential: null,
             }
         case OBTAIN_CURRENT_USER:
             return { 
@@ -88,7 +88,7 @@ export default function (state = INITIAL_STATE, action) {
                 status: 'obtaining_current_user',
                 error: '',
                 token: null,
-                appleSignInToken: null
+                appleSignInCredential: null
             }
         case OBTAIN_CURRENT_USER_FAIL:
             return { 
@@ -97,7 +97,7 @@ export default function (state = INITIAL_STATE, action) {
                 status: 'obtaining_current_user_failed',
                 error: action.payload,
                 token: null,
-                appleSignInToken: null
+                appleSignInCredential: null
             }
         case OBTAIN_CURRENT_USER_COMPLETE:
             return { 
@@ -107,7 +107,7 @@ export default function (state = INITIAL_STATE, action) {
                 status: 'obtaining_current_user_completed',
                 error: '',
                 token: null,
-                appleSignInToken: null
+                appleSignInCredential: null
             }
         case SIGN_IN_WITH_APPLE_LOGIN:
             return {
@@ -117,7 +117,7 @@ export default function (state = INITIAL_STATE, action) {
                 status: 'sign_in_with_apple_login',
                 error: '',
                 token: null,
-                appleSignInToken: null
+                appleSignInCredential: null
             }
         case SIGN_IN_WITH_APPLE_LOGIN_FAIL:
             return {
@@ -125,9 +125,9 @@ export default function (state = INITIAL_STATE, action) {
                 currentUser: null,
                 loading: false,
                 status: 'sign_in_with_apple_login_fail',
-                error: action.payloard,
+                error: action.payload,
                 token: null,
-                appleSignInToken: null
+                appleSignInCredential: null
             }
         case SIGN_IN_WITH_APPLE_LOGIN_COMPLETE:
             return {
@@ -137,7 +137,7 @@ export default function (state = INITIAL_STATE, action) {
                 status: 'sign_in_with_apple_login_success',
                 error: '',
                 token: action.payload.identityToken,
-                appleSignInToken: action.payload.identityToken
+                appleSignInCredential: action.payload
             }
         default:
             return state;

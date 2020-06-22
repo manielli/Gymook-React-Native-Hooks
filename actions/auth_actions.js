@@ -135,7 +135,6 @@ const doSignInWithAppleLogin = async dispatch => {
             ]
         })
         // console.log(credential)
-    
         if (credential) {
             dispatch({
                 type: SIGN_IN_WITH_APPLE_LOGIN_COMPLETE,
@@ -148,7 +147,8 @@ const doSignInWithAppleLogin = async dispatch => {
         }
     } catch (error) {
         dispatch({
-            type: SIGN_IN_WITH_APPLE_LOGIN_FAIL
+            type: SIGN_IN_WITH_APPLE_LOGIN_FAIL,
+            payload: error
         })
         console.log(error)
     }
