@@ -19,7 +19,7 @@ const WelcomeScreen = ({ navigation }) => {
     }
       
     return (
-            renderSpinner()
+        renderSpinner()
     )
 }
 

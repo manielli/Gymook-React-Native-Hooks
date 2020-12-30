@@ -12,15 +12,16 @@ export default function AppRouter() {
     return (
         <NavigationContainer>
             <Stack.Navigator
-                initialRouteName=' '
+                initialRouteName='Welcome Screen'
                 screenOptions={{
                     headerStyle: {
-                        backgroundColor: 'steelblue',
+                        // backgroundColor: 'steelblue',
+                        headerShown: false,
                     },
                 }}
             >
-                <Stack.Screen name=' ' component={WelcomeScreen} />
-                <Stack.Screen name='  ' component={AuthScreen} />
+                <Stack.Screen name='Welcome Screen' component={WelcomeScreen} />
+                <Stack.Screen name='Auth Screen' component={AuthScreen} />
                 <Stack.Screen name='Bookings Screen' component={BookingsScreen} />
             </Stack.Navigator>
         </NavigationContainer>
